@@ -1,5 +1,5 @@
 
-let choices = ["R", "P", "S"];
+let choices = ["ROCK", "PAPER", "SCISSORS"];
 
 // getting the computer choice!
 function getComputerChoice(){
@@ -11,11 +11,11 @@ function getComputerChoice(){
 //getting the player choice!
 function getPlayerChoice(){
     let answer = prompt("ROCK PAPER SCISSORS!");
-    let playerChoice = answer[0].toUpperCase();
+    let playerChoice = answer.toUpperCase();
     while((choices.includes(playerChoice) === false) || (playerChoice === null)){
         // console.log("You entered an undefined character, enter R, s or P! :)");
-        answer = prompt("You entered an undefined character, you can just enter R, p or S");
-        playerChoice = answer[0].toUpperCase();
+        answer = prompt("You entered an undefined string of characters, enter again!");
+        playerChoice = answer.toUpperCase();
     }
     return playerChoice;
 }
@@ -24,49 +24,32 @@ function getPlayerChoice(){
 
 
 function checkwinner(Pchoice, Cchoice){
-    let result;
     if(Pchoice === Cchoice){
         return result = "Tie";
     }
-    else if((Pchoice === "P" && Cchoice === "R") ||
-    (Pchoice === "S" && Cchoice === "P") ||
-    (Pchoice === "R" && Cchoice === "S")){
-        return  result = "Player";
+    else if((Pchoice === "PAPER" && Cchoice === "ROCK") ||
+    (Pchoice === "SCISSORS" && Cchoice === "PAPER") ||
+    (Pchoice === "ROCK" && Cchoice === "SCISSORS")){
+        return  `You win! ${Pchoice} beats ${Cchoice}`;
     }
     else{
-        return result = "Computer";
+        return `You lose! ${Cchoice} beats ${Pchoice}`;
     }
 }
+
+
 console.log("LET THE GAME BEGIN!");
+
+
 for(let i = 0; i < 5; i++){
     console.log(i);
     playerChoice = getPlayerChoice();
     ComputerChoice = getComputerChoice();
     console.log(playerChoice);
     console.log(ComputerChoice);
-    let result = checkwinner(playerChoice, ComputerChoice);
-    console.log(result);
-    let T = P = C = 0;
-    if(result === "Player"){
-        P++;
-    }
-    else if(result === "Computer"){
-        C++;
-    } else{
-        T++;
-    }
-    console.log("---------------------");
+    console.log(checkwinner(playerChoice, ComputerChoice));
 }
 
-if(P > C){
-    console.log("YOUUU WONNN!!! :))))");
-    console.log(P);
-}else{
-    console.log("You lost! :/");
-}
-
-console.log("number of ties");
-console.log(T);
 
 console.log("*****************");
 console.log("Refresh to play again");
